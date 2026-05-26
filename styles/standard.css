@@ -15,5 +15,6 @@
 
 .content{
     width: 100%;
-    padding: 0 max(calc(50% - 720px), 1 rem);
+    padding: 0 max(calc(50% - 720px), 1rem);
 }
+
