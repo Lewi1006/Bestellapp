@@ -3,6 +3,10 @@
   min-height: 100dvh;
 }
 
+/* main{
+  padding-bottom: 70px;
+} */
+
 header {
   width: 100%;
   height: 70px;
@@ -36,6 +40,100 @@ header {
   }
 }
 
+.landing-page {
+  height: 100%;
+  width: 100%;
+  padding-top: 16px;
+}
+
+.landing-page-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .landing-page-photos {
+    height: 420px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .hero-photo {
+      height: 330px;
+      width: 300px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+
+    .hero-icon {
+      height: 120px;
+      width: 120px;
+      z-index: 1;
+      position: absolute;
+      bottom: 20px;
+    }
+  }
+
+  .landing-page-text {
+    width: 100%;
+
+    .landing-page-headline {
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+
+      h1 {
+        font-family: "Palanquin Dark";
+        font-size: 40px;
+        font-weight: 700;
+
+        span {
+          font-family: "Palanquin Dark";
+          font-size: 40px;
+          color: rgba(231, 108, 31, 1);
+        }
+      }
+
+      .rating {
+        width: 110px;
+        height: 32px;
+        background-color: rgba(250, 202, 172, 1);
+        border-radius: 4px;
+        padding: 4px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        img {
+          width: 24px;
+          height: auto;
+        }
+
+        .average-rating {
+          font-family: "Palanquin Dark";
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 120%;
+        }
+
+        .reviews-count {
+          font-size: 18px;
+          line-height: 120%;
+          color: rgba(54, 53, 52, 1);
+        }
+      }
+    }
+
+    p {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 120%;
+      text-align: center;
+    }
+  }
+}
 
 .nav-wrapper {
   width: 100%;
@@ -63,32 +161,31 @@ header {
   }
 }
 
-
-footer{
+footer {
   width: 100%;
   height: 125px;
   background-color: rgba(231, 108, 31, 1);
 }
 
-.footer-wrapper{
+.footer-wrapper {
   width: 100%;
   height: 100%;
-  display:flex;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 
-  p{
+  p {
     color: white;
     font-size: 18px;
   }
 
-  div{
+  div {
     display: flex;
     gap: 6px;
     align-items: center;
 
-    img{
+    img {
       width: 20px;
       height: 20px;
     }
