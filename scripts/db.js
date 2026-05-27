@@ -1,6 +1,10 @@
 let menu = [
   {
-    category: "Burger",
+    category: {
+      name: "Burger",
+      src: "./assets/icons/seperator-burger-icon.svg",
+      alt: "burger-icon",
+    },
 
     dishes: [
       {
@@ -17,7 +21,7 @@ let menu = [
           "Beef, Bacon, Dill pickles, Smoked cheese, Ketchup, BBQ sauce",
         price: 15.9,
         src: "./assets/img/all-meat-burger.jpg",
-        alt: "all meet burger",
+        alt: "all meat burger",
       },
       {
         name: "Beef red burger",
@@ -38,7 +42,12 @@ let menu = [
   },
 
   {
-    category: "Pizza",
+    category: {
+      name: "Pizza",
+      src: "./assets/icons/seperator-pizza-icon.svg",
+      alt: "pizza-icon",
+    },
+
     dishes: [
       {
         name: "Pizza Margherita",
@@ -72,7 +81,11 @@ let menu = [
     ],
   },
   {
-    category: "Salad",
+    category: {
+      name: "Salad",
+      src: "./assets/icons/seperator-salad-icon.svg",
+      alt: "salad-icon",
+    },
 
     dishes: [
       {
