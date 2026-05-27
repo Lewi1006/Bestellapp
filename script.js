@@ -32,10 +32,8 @@ function renderMenuCard() {
               </div>
   
               <div class="dish-name">
-                <h3>Veggie mushroom black burger</h3>
-                <p>
-                  Chicken, Mozzarella, Gorgonzola, Fontina, Parmigiano Reggiano
-                </p>
+                <h3>${menu[indexMenu].dishes[indexDishes].name}</h3>
+                <p>${menu[indexMenu].dishes[indexDishes].description}</p>
               </div>
   
               <div class="price">
