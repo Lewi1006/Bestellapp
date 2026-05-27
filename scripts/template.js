@@ -35,7 +35,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
               </div>
   
               <div class="price">
-                <p>${dish.price} €</p>
+                <p>${dish.price.toFixed(2).replace(".",",")} €</p>
   
                 <button class="basket">
                   <p>Add to basket</p>
