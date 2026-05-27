@@ -22,8 +22,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
  
     let dish = menu[indexMenu].dishes[indexDishes];
 
-  return `
-     
+  return /*html*/`     
             <article class="menu-card">
               <div class="menu-img">
                 <img src=${dish.src} alt=${dish.alt} />
@@ -37,7 +36,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
               <div class="price">
                 <p>${dish.price.toFixed(2).replace(".",",")} €</p>
   
-                <button class="basket">
+                <button class="basket-button" aria-label="add to basket">
                   <p>Add to basket</p>
                 </button>
               </div>
@@ -48,3 +47,9 @@ function getDishesTemplate(indexMenu, indexDishes) {
   }
 
 
+// function getBasketTemplate(){
+//   return /*html*/`
+    
+//   `
+
+// }
