@@ -11,24 +11,18 @@ function getMenuTemplate(indexMenu) {
         </div>
         
          <div class="content">
-            <div class="menu-card-wrapper">
-         ${getDishesTemplate(indexMenu)}
+            <div id="menu-card-wrapper${indexMenu}" class="menu-card-wrapper">
+     
           </div>
         </div>
         `;
 }
 
-function getDishesTemplate(indexMenu) {
-  let dishCard = "";
-
-  for (
-    let indexDishes = 0;
-    indexDishes < menu[indexMenu].dishes.length;
-    indexDishes++
-  ) {
+function getDishesTemplate(indexMenu, indexDishes) {
+ 
     let dish = menu[indexMenu].dishes[indexDishes];
 
-    dishCard += `
+  return `
      
             <article class="menu-card">
               <div class="menu-img">
@@ -52,9 +46,5 @@ function getDishesTemplate(indexMenu) {
          
         `;
   }
-
-  return dishCard;
-}
-
 
 
