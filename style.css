@@ -174,7 +174,10 @@ header {
 
   .menu-card-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 24px;
 
     .menu-card {
       width: 294px;
