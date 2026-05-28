@@ -47,11 +47,11 @@ function getDishesTemplate(indexMenu, indexDishes) {
   }
 
 
-function getBasketTemplate(subtotal, total){
+function getBasketTemplate(totals){
   return /*html*/`
     <div class="dialog-wrapper">
       <header class="dialog-header">
-        <button><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
       </header>
         
       <h1>Your Basket</h1>
@@ -59,25 +59,25 @@ function getBasketTemplate(subtotal, total){
       <div id="basket-wrapper">
      </div>
 
-          <table class="basket-total">
+          <table class="basket-table-total">
           <tr>
             <td>Subtotal</td>
-            <td>${subtotal.toFixed(2).replace(".",",")}€</td>
+            <td>${totals.subtotal.toFixed(2).replace(".",",")} €</td>
           </tr>
 
-          <tr>
+          <tr class="delivery-row">
             <td>Delivery Fee</td>
-            <td>4,99€</td>
+            <td>${totals.deliveryFee.toFixed(2).replace(".",",")} €</td>
           </tr>
 
-          <tr>
+          <tr id="total-row">
             <td>Total</td>
-            <td>${total.toFixed(2).replace(".",",")}€</td>
+            <td>${totals.total.toFixed(2).replace(".",",")} €</td>
           </tr>
         </table>
 
-        <button>
-          <p></p>
+        <button class="buy-now-button">
+          <p>Buy now (${totals.total.toFixed(2).replace(".",",")}€)</p>
         </button>
   
         
@@ -86,13 +86,14 @@ function getBasketTemplate(subtotal, total){
 
 }
 
+
 function getBasketCardTemplate(indexBasket){
 
 return /*html*/`
     <article class="basket-card">
       <div class="basket-card-top">
           <p class="basket-dish">${basket[indexBasket].name}</p>
-          <button class="trash-button"><img src="./assets/icons/trash-icon.svg" alt="trash" /></button>
+          <button class="trash-button" onclick="deleteFromBasket(${indexBasket})"><img src="./assets/icons/trash-icon.svg" alt="trash"/></button>
       </div>
 
       <div class="basket-card-bottom">
@@ -112,6 +113,10 @@ return /*html*/`
 `;
 
 
+}
+
+function getCheckOutTemplate(){
+  
 }
 
 

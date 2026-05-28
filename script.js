@@ -35,10 +35,9 @@ function renderDishes(indexMenu) {
 
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
-  let subtotal = calculateTotal();
-  let total = subtotal + 4.99
+  let totals = calculateTotal();
 
-  basketRef.innerHTML = getBasketTemplate(subtotal, total);
+  basketRef.innerHTML = getBasketTemplate(totals);
 
   let basketWrapperRef = document.getElementById(`basket-wrapper`)
 
@@ -46,6 +45,8 @@ function renderBasket() {
   basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
   };
 }
+
+
 
 
 // #endregion
@@ -79,6 +80,17 @@ renderBasket();
 }
 
 
+function deleteFromBasket(indexBasket){
+basket.splice(indexBasket, 1);
+renderBasket();
+
+}
+
+function checkOut(){
+  
+}
+
+
 function calculateTotal(){
   let subtotal = 0;
 
@@ -86,14 +98,12 @@ function calculateTotal(){
     subtotal += basket[itemInBasket].price * basket[itemInBasket].count;
   }
 
-  return subtotal;
-  
+  let deliveryFee = basket.length === 0 ? 0.00 : 4.99;
+  let total = subtotal + deliveryFee;
+
+  return {
+    subtotal: subtotal, 
+    deliveryFee: deliveryFee, 
+    total: total,
+};
 }
-
-
-
-
-
-
-
-
