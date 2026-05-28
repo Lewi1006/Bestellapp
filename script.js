@@ -1,12 +1,11 @@
 let checkedOut = false;
 
-
-
 function init() {
   renderMenu();
 }
 
 // #region render function
+
 
 function renderMenu() {
   const menuRef = document.getElementById("menu");
@@ -60,11 +59,8 @@ function renderBasket() {
   };
 
 }
-
-
-
-
 // #endregion
+
 
 function openDialog() {
   let basketRef = document.getElementById(`basket`);
@@ -85,13 +81,28 @@ function addToBasket(indexMenu, indexDishes){
   
   let dish = menu[indexMenu].dishes[indexDishes];
 
-  basket.push(
-    {
-    name: dish.name,
-    price: dish.price,
-    count: 1,
-  }
-);
+  let foundItem = false;
+  let repeatingDish = "";
+
+  for(let basketItem = 0; basketItem < basket.length; basketItem++){
+    if(basket[basketItem].name === dish.name){
+      foundItem = true;
+      repeatingDish = basket[basketItem];
+      break;
+    } 
+  } 
+  
+  if(foundItem === true){
+    repeatingDish.count++;
+  } else {
+      basket.push(
+      {
+      name: dish.name,
+      price: dish.price,
+      count: 1,
+    }
+  );
+}
 
 renderBasket();
 
@@ -109,6 +120,7 @@ function checkOut(){
     basket = [];
     renderBasket();
 }
+
 
 function calculateTotal(){
   let subtotal = 0;
