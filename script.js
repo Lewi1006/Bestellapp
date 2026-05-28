@@ -2,6 +2,8 @@ function init() {
   renderMenu();
 }
 
+// #region render function
+
 function renderMenu() {
   let menuRef = document.getElementById("menu");
   menuRef.innerHTML = "";
@@ -28,65 +30,49 @@ function renderDishes(indexMenu) {
   }
 }
 
+
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
-  // basketRef.innerHTML = "";
+  basketRef.innerHTML = "";
 
-  // for (let indexBasket = 0; indexBasket < basket.length; indexBasket++){
-  basketRef.innerHTML += /*html*/ `
-<div class="dialog-wrapper">
-  <header class="dialog-header">
-    <button>x</button>
-  </header>
-  <h1></h1>
-
-  <div class="basket-wrapper">
-
-    <article class="basket-card">
-      <div class="basket-card-top">
-          <p class="basket-dish"></p>
-          <button class="trash-button"><img src="" alt="" /></button>
-      </div>
-
-      <div class="basket-card-bottom">
-        <div class="basket-count">
-          <button>-</button>
-          <p>n</p>
-          <button>+</button>
-        </div>
-          <p class="basket-price"></p>
-      </div>
-
-    </article>
-
-    <table class="basket-total">
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
-          </tr>
-        </table>
-
-        <button>
-          <p></p>
-        </button>
-  </div>
-</div>
-    `;
-  // }
+  for (let indexBasket = 0; indexBasket < basket.length; indexBasket++){
+  basketRef.innerHTML += getBasketTemplate(indexBasket);
+  };
 }
 
+
+// #endregion
+
+
+
+
+
+
+
+
+
+
 function openDialog() {
-  renderBasket();
   let basketRef = document.getElementById(`basket`);
   basketRef.showModal();
+}
+
+function closeDialog(){
+  let basketRef = document.getElementById(`basket`);
+  basketRef.close();
+}
+
+function addToBasket(indexMenu, indexDishes){
+  let dish = menu[indexMenu].dishes[indexDishes];
+
+  basket.push(
+    {
+    name: dish.name,
+    price: dish.price,
+    count: 1,
+  }
+);
+
+renderBasket();
+
 }

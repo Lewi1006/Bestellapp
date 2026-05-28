@@ -36,7 +36,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
               <div class="price">
                 <p>${dish.price.toFixed(2).replace(".",",")} €</p>
   
-                <button class="basket-button" aria-label="add to basket">
+                <button class="basket-button" aria-label="add to basket" onclick="addToBasket(${indexMenu}, ${indexDishes})">
                   <p>Add to basket</p>
                 </button>
               </div>
@@ -47,9 +47,76 @@ function getDishesTemplate(indexMenu, indexDishes) {
   }
 
 
-// function getBasketTemplate(){
-//   return /*html*/`
-    
-//   `
+function getBasketTemplate(indexBasket){
+  return /*html*/`
+    <div class="dialog-wrapper">
+      <header class="dialog-header">
+        <button>x</button>
+      </header>
+        
+      <h1>Your Basket</h1>
+
+  <div class="basket-wrapper">
+
+    <article class="basket-card">
+      <div class="basket-card-top">
+          <p class="basket-dish">${basket[indexBasket].name}</p>
+          <button class="trash-button"><img src="./assets/icons/trash-icon.svg" alt="trash" /></button>
+      </div>
+
+      <div class="basket-card-bottom">
+        <div class="basket-count">
+          <button>-</button>
+          <p class="count"></p>
+          <button>+</button>
+        </div>
+          <p class="basket-price">${basket[indexBasket].price}</p>
+      </div>
+    </article>
+
+    <table class="basket-total">
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <button>
+          <p></p>
+        </button>
+  </div>
+</div>
+  `;
+
+}
+
+// function getBasketCardTemplate(indexBasket){
+
+// return /*html*/`
+// <div class="basket-card-top">
+//           <p class="basket-dish">${basket[indexBasket].name}</p>
+//           <button class="trash-button"><img src="./assets/icons/trash-icon.svg" alt="trash" /></button>
+//       </div>
+
+//       <div class="basket-card-bottom">
+//         <div class="basket-count">
+//           <button>-</button>
+//           <p class="count"></p>
+//           <button>+</button>
+//         </div>
+//           <p class="basket-price">${basket[indexBasket].pricetoFixed(2).replace(".", ",")}</p>
+//       </div>
+// `
+
 
 // }
