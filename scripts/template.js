@@ -19,10 +19,9 @@ function getMenuTemplate(indexMenu) {
 }
 
 function getDishesTemplate(indexMenu, indexDishes) {
- 
-    let dish = menu[indexMenu].dishes[indexDishes];
+  let dish = menu[indexMenu].dishes[indexDishes];
 
-  return /*html*/`     
+  return /*html*/ `     
             <article class="menu-card">
               <div class="menu-img">
                 <img src=${dish.src} alt=${dish.alt} />
@@ -34,7 +33,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
               </div>
   
               <div class="price">
-                <p>${dish.price.toFixed(2).replace(".",",")} €</p>
+                <p>${dish.price.toFixed(2).replace(".", ",")} €</p>
   
                 <button class="basket-button" aria-label="add to basket" onclick="addToBasket(${indexMenu}, ${indexDishes})">
                   <p>Add to basket</p>
@@ -44,11 +43,10 @@ function getDishesTemplate(indexMenu, indexDishes) {
 
          
         `;
-  }
+}
 
-
-function getBasketTemplate(totals){
-  return /*html*/`
+function getBasketTemplate(totals) {
+  return /*html*/ `
     <div class="dialog-wrapper">
       <header class="dialog-header">
         <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
@@ -62,34 +60,31 @@ function getBasketTemplate(totals){
           <table class="basket-table-total">
           <tr>
             <td>Subtotal</td>
-            <td>${totals.subtotal.toFixed(2).replace(".",",")} €</td>
+            <td>${totals.subtotal.toFixed(2).replace(".", ",")} €</td>
           </tr>
 
           <tr class="delivery-row">
             <td>Delivery Fee</td>
-            <td>${totals.deliveryFee.toFixed(2).replace(".",",")} €</td>
+            <td>${totals.deliveryFee.toFixed(2).replace(".", ",")} €</td>
           </tr>
 
           <tr id="total-row">
             <td>Total</td>
-            <td>${totals.total.toFixed(2).replace(".",",")} €</td>
+            <td>${totals.total.toFixed(2).replace(".", ",")} €</td>
           </tr>
         </table>
 
-        <button class="buy-now-button">
-          <p>Buy now (${totals.total.toFixed(2).replace(".",",")}€)</p>
+        <button class="buy-now-button" onclick="checkOut()">
+          <p>Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
         </button>
   
         
     </div>
   `;
-
 }
 
-
-function getBasketCardTemplate(indexBasket){
-
-return /*html*/`
+function getBasketCardTemplate(indexBasket) {
+  return /*html*/ `
     <article class="basket-card">
       <div class="basket-card-top">
           <p class="basket-dish">${basket[indexBasket].name}</p>
@@ -102,7 +97,7 @@ return /*html*/`
           <p class="count"> n </p>
           <button>+</button>
         </div>
-          <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".",",")}€</p>
+          <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".", ",")}€</p>
       </div>
 
 
@@ -111,12 +106,22 @@ return /*html*/`
 
   
 `;
-
-
 }
 
-function getCheckOutTemplate(){
-  
+function getCheckOutTemplate() {
+  return /*html*/ `
+
+    <div class="dialog-wrapper-ordered">
+      <header class="dialog-header">
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+      </header>
+
+    <img src="./assets/icons/delivery-truck-icon.svg" alt="delivery truck icon"/>
+
+    <div>
+      <h1>Order confirmed!</h1>
+      <p>Your food is on the way!</p> 
+    </div>
+  </div>
+  `;
 }
-
-
