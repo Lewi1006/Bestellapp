@@ -1,3 +1,5 @@
+
+
 function init() {
   renderMenu();
 }
@@ -5,7 +7,7 @@ function init() {
 // #region render function
 
 function renderMenu() {
-  let menuRef = document.getElementById("menu");
+  const menuRef = document.getElementById("menu");
   menuRef.innerHTML = "";
 
   for (let indexMenu = 0; indexMenu < menu.length; indexMenu++) {
@@ -33,10 +35,12 @@ function renderDishes(indexMenu) {
 
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
-  basketRef.innerHTML = "";
+  basketRef.innerHTML = getBasketTemplate();
+
+  let basketWrapperRef = document.getElementById(`basket-wrapper`)
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++){
-  basketRef.innerHTML += getBasketTemplate(indexBasket);
+  basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
   };
 }
 
@@ -55,6 +59,7 @@ function renderBasket() {
 function openDialog() {
   let basketRef = document.getElementById(`basket`);
   basketRef.showModal();
+  renderBasket();
 }
 
 function closeDialog(){
@@ -63,6 +68,7 @@ function closeDialog(){
 }
 
 function addToBasket(indexMenu, indexDishes){
+  
   let dish = menu[indexMenu].dishes[indexDishes];
 
   basket.push(

@@ -10,6 +10,7 @@ main {
   gap: 48px;
 }
 
+/* #region header */
 .html-header {
   width: 100%;
   height: 70px;
@@ -43,6 +44,9 @@ main {
   }
 }
 
+/* #endregion */
+
+/* #region landing-page */
 .landing-page {
   height: 100%;
   width: 100%;
@@ -137,6 +141,8 @@ main {
     }
   }
 }
+
+/* #endregion */
 
 #menu {
   width: 100%;
@@ -279,7 +285,88 @@ dialog {
   margin: auto;
    padding: 24px 16px;
    border: none;
+
+   .dialog-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .dialog-header{
+      width: 100%;
+      height:fit-content;
+      color: rgba(253, 234, 220, 1);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      button{
+        height: 16px;
+        width: 16px;
+      }
+
+    }
+
+    h1{
+      color: rgba(253, 234, 220, 1);
+      font-weight: 700;
+      font-size: 32px;
+    }
+
+    #basket-wrapper{
+      width: 100%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .basket-card{
+        width: 250px;
+        height: fit-content;
+        background-color: rgba(253, 234, 220, 1);
+        border-radius: 20px;
+        padding: 16px;
+
+        .basket-card-top{
+          width: 100%;
+          color: rgba(54, 53, 52, 1);
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 120%;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .basket-card-bottom{
+          width: 100%;
+           color: rgba(54, 53, 52, 1);
+          font-weight: 700;
+          font-size: 20px;
+          line-height: 120%;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .basket-count{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+
+          }
+        }
+      }
+    }
+
+   }
 }
+
+
+
 
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
