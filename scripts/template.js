@@ -47,7 +47,7 @@ function getDishesTemplate(indexMenu, indexDishes) {
   }
 
 
-function getBasketTemplate(){
+function getBasketTemplate(subtotal, total){
   return /*html*/`
     <div class="dialog-wrapper">
       <header class="dialog-header">
@@ -61,18 +61,18 @@ function getBasketTemplate(){
 
           <table class="basket-total">
           <tr>
-            <td></td>
-            <td></td>
+            <td>Subtotal</td>
+            <td>${subtotal.toFixed(2).replace(".",",")}€</td>
           </tr>
 
           <tr>
-            <td></td>
-            <td></td>
+            <td>Delivery Fee</td>
+            <td>4,99€</td>
           </tr>
 
           <tr>
-            <td></td>
-            <td></td>
+            <td>Total</td>
+            <td>${total.toFixed(2).replace(".",",")}€</td>
           </tr>
         </table>
 

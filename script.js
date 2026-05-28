@@ -35,7 +35,10 @@ function renderDishes(indexMenu) {
 
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
-  basketRef.innerHTML = getBasketTemplate();
+  let subtotal = calculateTotal();
+  let total = subtotal + 4.99
+
+  basketRef.innerHTML = getBasketTemplate(subtotal, total);
 
   let basketWrapperRef = document.getElementById(`basket-wrapper`)
 
@@ -47,15 +50,6 @@ function renderBasket() {
 
 // #endregion
 
-
-
-
-
-
-
-
-
-
 function openDialog() {
   let basketRef = document.getElementById(`basket`);
   basketRef.showModal();
@@ -66,6 +60,7 @@ function closeDialog(){
   let basketRef = document.getElementById(`basket`);
   basketRef.close();
 }
+
 
 function addToBasket(indexMenu, indexDishes){
   
@@ -82,3 +77,23 @@ function addToBasket(indexMenu, indexDishes){
 renderBasket();
 
 }
+
+
+function calculateTotal(){
+  let subtotal = 0;
+
+  for(let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++){
+    subtotal += basket[itemInBasket].price * basket[itemInBasket].count;
+  }
+
+  return subtotal;
+  
+}
+
+
+
+
+
+
+
+
