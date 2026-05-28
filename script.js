@@ -108,6 +108,21 @@ renderBasket();
 
 }
 
+function decreaseCount(indexBasket){
+basket[indexBasket].count--;
+
+if(basket[indexBasket].count <= 0){
+  basket.splice(indexBasket, 1);
+}
+
+renderBasket();
+}
+
+function increaseCount(indexBasket){
+basket[indexBasket].count++;
+renderBasket();
+}
+
 
 function deleteFromBasket(indexBasket){
 basket.splice(indexBasket, 1);

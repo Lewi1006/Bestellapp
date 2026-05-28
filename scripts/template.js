@@ -93,9 +93,9 @@ function getBasketCardTemplate(indexBasket) {
 
       <div class="basket-card-bottom">
         <div class="basket-count">
-          <button>-</button>
+          <button onclick="decreaseCount(${indexBasket})">-</button>
           <p class="count">${basket[indexBasket].count}</p>
-          <button>+</button>
+          <button onclick="increaseCount(${indexBasket})">+</button>
         </div>
           <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".", ",")}€</p>
       </div>
