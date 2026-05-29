@@ -277,6 +277,10 @@ main {
   position: fixed;
   bottom: 0;
 
+    @media screen and (min-width: 900px) {
+        display: none;
+      }
+
   .nav-list {
     height: 100%;
     width: 100%;
