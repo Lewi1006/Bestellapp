@@ -153,4 +153,8 @@ function calculateTotal() {
   };
 }
 
+
+function calculateBasketCount(){
+  
+}
 // #endregion
