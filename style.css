@@ -291,14 +291,21 @@ main {
           .item-count{
             color: rgba(231, 108, 31, 1);
             font-family:'Figtree';
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             line-height: 120%;
           }
       }
+
+      
     }
+    
   }
 }
+
+.hidden{
+        display: none;
+      }
 
 dialog {
   width: 300px;

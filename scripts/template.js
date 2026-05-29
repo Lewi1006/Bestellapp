@@ -125,3 +125,9 @@ function getCheckOutTemplate() {
   </div>
   `;
 }
+
+function getCartCountTemplate(itemCount){
+  return /*html*/`
+    <p class="item-count">${itemCount}</p>
+  `
+}

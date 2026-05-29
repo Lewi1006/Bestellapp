@@ -38,7 +38,7 @@ function renderDishes(indexMenu) {
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
   let totals = calculateTotal();
-
+  
   // if payed than order confirmation
   if (checkedOut === true) {
     basketRef.classList.add("basket-order-confirmed");
@@ -51,8 +51,21 @@ function renderBasket() {
   // basket with elements that only need rendering once
   basketRef.innerHTML = getBasketTemplate(totals);
 
+  // cart-count shopping cart icon
+  let cartCountRef = document.getElementById(`cart-count`);
+  let itemCount = calculateBasketCount();
+
+  if(itemCount === 0){
+    cartCountRef.innerHTML = "";
+    cartCountRef.classList.remove("circle-flag");
+  } else {
+    cartCountRef.classList.add("circle-flag");
+    cartCountRef.innerHTML = getCartCountTemplate(itemCount); 
+  }
+
   // render dish cards into basket
   let basketWrapperRef = document.getElementById(`basket-wrapper`);
+  basketWrapperRef.innerHTML = "";
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
     basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
@@ -155,6 +168,13 @@ function calculateTotal() {
 
 
 function calculateBasketCount(){
+  let itemCount = 0;
+
+  for(let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++){
+    itemCount += basket[itemInBasket].count;
+  }
+
+  return itemCount;
   
 }
 // #endregion
