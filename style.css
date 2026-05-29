@@ -13,7 +13,7 @@ main {
 /* #region header */
 .html-header {
   width: 100%;
-  height: 70px;
+  height: clamp(70px, 8.5dvw, 120px);
   background-color: rgba(231, 108, 31, 1);
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ main {
       align-items: center;
 
       img {
-        width: 32px;
+        width: 34px;
         height: auto;
       }
 
@@ -53,10 +53,10 @@ main {
       display: none;
       width: 45px;
       height: auto;
-    }
 
-    @media screen {
-      
+      @media screen and (min-width: 900px) {
+        display: flex;
+      }
     }
   }
 }
