@@ -277,9 +277,9 @@ main {
   position: fixed;
   bottom: 0;
 
-    @media screen and (min-width: 900px) {
-        display: none;
-      }
+  @media screen and (min-width: 900px) {
+    display: none;
+  }
 
   .nav-list {
     height: 100%;
@@ -525,6 +525,14 @@ footer {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 900px) {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px;
+    justify-content: center;
+    height: 125px;
+  }
 
   p {
     color: white;
