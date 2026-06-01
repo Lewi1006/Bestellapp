@@ -1,9 +1,10 @@
-.body {
+body {
   width: 100%;
   min-height: 100dvh;
 }
 
 main {
+  width: 100%;
   padding-bottom: 48px;
   display: flex;
   flex-direction: column;
@@ -183,8 +184,11 @@ main {
 
 /* #endregion */
 
+/* #region menu */
+
 #menu {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -224,8 +228,12 @@ main {
     align-items: center;
     gap: 24px;
 
+     @media screen and (min-width: 900px){
+    width: calc(100% - 400px);
+  }
+
     .menu-card {
-      width: 294px;
+      width: clamp(294px, 60dvw, 715px);
       background-color: rgba(253, 234, 220, 1);
       border-radius: 12px;
       padding: 16px;
@@ -288,6 +296,31 @@ main {
     }
   }
 }
+/* #endregion */
+
+.basket-desktop-wrapper{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 768px;
+
+  .content-basket-desktop{
+    width: 1440px;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    #basket-desktop{
+      background: blue;
+      height: 600px;
+      width: 400px;
+      position: sticky;
+      top: 0;
+    }
+  }
+
+}
+
 
 .nav-wrapper {
   width: 100%;
