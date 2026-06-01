@@ -37,6 +37,7 @@ function renderDishes(indexMenu) {
 // basket
 function renderBasket() {
   let basketRef = document.getElementById(`basket`);
+  
   let totals = calculateTotal();
   
   // if payed than order confirmation
