@@ -39,7 +39,7 @@ function renderBasket() {
   let basketRef = document.getElementById(`basket`);
   
   let totals = calculateTotal();
-  
+
   // if payed than order confirmation
   if (checkedOut === true) {
     basketRef.classList.add("basket-order-confirmed");
