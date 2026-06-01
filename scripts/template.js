@@ -23,13 +23,15 @@ function getDishesTemplate(indexMenu, indexDishes) {
 
   return /*html*/ `     
             <article class="menu-card">
-              <div class="menu-img">
-                <img src=${dish.src} alt=${dish.alt} />
-              </div>
-  
-              <div class="dish-name">
-                <h3>${dish.name}</h3>
-                <p>${dish.description}</p>
+              <div class="menu-card-left">
+                <div class="menu-img">
+                  <img src=${dish.src} alt=${dish.alt} />
+                </div>
+    
+                <div class="dish-name">
+                  <h3>${dish.name}</h3>
+                  <p>${dish.description}</p>
+                </div>
               </div>
   
               <div class="price">
