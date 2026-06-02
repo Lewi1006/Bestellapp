@@ -51,34 +51,34 @@ function getBasketTemplate(totals) {
   return /*html*/ `
     <div class="dialog-wrapper">
       <header class="dialog-header">
-        <button><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeBasket()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
       </header>
         
       <h1>Your Basket</h1>
 
       <div id="basket-wrapper">
-        <!--getBasketCardTemplate-->
+        
      </div>
 
           <table class="basket-table-total">
           <tr>
             <td>Subtotal</td>
-            <td>€</td>
+            <td>${totals.subtotal.toFixed(2).replace(".",",")} €</td>
           </tr>
 
           <tr class="delivery-row">
             <td>Delivery Fee</td>
-            <td>€</td>
+            <td>${totals.deliveryFee.toFixed(2).replace(".", ",")} €</td>
           </tr>
 
           <tr id="total-row">
             <td>Total</td>
-            <td>€</td>
+            <td>${totals.total.toFixed(2).replace(".", ",")} €</td>
           </tr>
         </table>
 
-        <button class="buy-now-button">
-          <p>Buy now (€)</p>
+        <button class="buy-now-button" onclick="openDialog()">
+          <p>Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
         </button>
   
         
@@ -104,4 +104,29 @@ function getBasketCardTemplate(indexBasket) {
       </div>
     </article>
 `;
+}
+
+
+function getCheckOutTemplate() {
+  return /*html*/ `
+
+    <div class="dialog-wrapper-ordered">
+      <header class="dialog-header">
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+      </header>
+
+    <img src="./assets/icons/delivery-truck-icon.svg" alt="delivery truck icon"/>
+
+    <div>
+      <h1>Order confirmed!</h1>
+      <p>Your food is on the way!</p> 
+    </div>
+  </div>
+  `;
+}
+
+function getCartCountTemplate(itemCount){
+  return /*html*/`
+    <p class="item-count">${itemCount}</p>
+  `
 }

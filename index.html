@@ -77,7 +77,7 @@
       <section id="menu"></section>
     </main>
 
-    <aside class="basket-desktop-wrapper">
+    <aside class="basket-desktop-wrapper hidden" id="open-basket">
       <div class="content-basket-desktop">
         <div id="basket">
           <!-- JS -->
@@ -85,6 +85,10 @@
         </div>
       </div>
     </aside>
+
+    <dialog id="check-out-dialog">
+      <!-- JS -->
+    </dialog>
 
     <!-- <dialog aria-labelledby="" id="basket"></dialog> -->
 
@@ -125,7 +129,7 @@
           </li>
 
           <li class="shopping-cart">
-            <button class="nav-link basket-link" href="" onclick="openDialog()">
+            <button class="nav-link basket-link" href="" onclick="openBasket()">
               <img
                 src="./assets/icons/shopping-cart-white.svg"
                 alt="shopping cart icon"

@@ -1,5 +1,3 @@
-let checkedOut = false;
-
 function init() {
   renderMenu();
   renderBasket();
@@ -35,19 +33,19 @@ function renderDishes(indexMenu) {
   }
 }
 
-
-
 // new basket
 
-function renderBasket(){
-  const basketRef = document.getElementById('basket');
+function renderBasket() {
+  const basketRef = document.getElementById(`basket`);
   const totals = calculateTotal();
+
+  console.log("totals:", totals);
 
   // basket with elements that only need rendering once
   basketRef.innerHTML = getBasketTemplate(totals);
-  console.log(basketRef)
+  console.log(basketRef);
 
-// render dish cards into basket
+  // render dish cards into basket
   const basketWrapperRef = document.getElementById(`basket-wrapper`);
   basketWrapperRef.innerHTML = "";
 
@@ -56,13 +54,25 @@ function renderBasket(){
   }
 }
 
+function renderCartCount(){
+  const cartCountRef = document.getElementById(`cart-count`);
+  const itemCount = calculateBasketCount();
 
+  if(itemCount === 0){
+    cartCountRef.innerHTML = "";
+    cartCountRef.classList.remove("circle-flag");
+  } else {
+    cartCountRef.classList.add("circle-flag");
+    cartCountRef.innerHTML = getCartCountTemplate(itemCount); 
+  }
+
+}
 
 
 // add to basket
 // make sure dishes are not added as two seperate cards but use counter instead
 // store access to full menu array in variable const dish
-// 
+//
 function addToBasket(indexMenu, indexDishes) {
   const dish = menu[indexMenu].dishes[indexDishes];
 
@@ -88,16 +98,8 @@ function addToBasket(indexMenu, indexDishes) {
   }
 
   renderBasket();
+  renderCartCount();
 }
-
-
-
-
-
-
-
-
-
 
 function decreaseCount(indexBasket) {
   basket[indexBasket].count--;
@@ -107,22 +109,19 @@ function decreaseCount(indexBasket) {
   }
 
   renderBasket();
+  renderCartCount();
 }
 
 function increaseCount(indexBasket) {
   basket[indexBasket].count++;
   renderBasket();
+  renderCartCount();
 }
 
 function deleteFromBasket(indexBasket) {
   basket.splice(indexBasket, 1);
   renderBasket();
-}
-
-function checkOut() {
-  checkedOut = true;
-  basket = [];
-  renderBasket();
+  renderCartCount();
 }
 
 function calculateTotal() {
@@ -142,14 +141,54 @@ function calculateTotal() {
   };
 }
 
-
-function calculateBasketCount(){
+function calculateBasketCount() {
   let itemCount = 0;
 
-  for(let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++){
+  for (let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++) {
     itemCount += basket[itemInBasket].count;
   }
 
   return itemCount;
+}
+
+function openBasket(){
+  const openBasketRef = document.getElementById(`open-basket`);
+  openBasketRef.classList.remove(`hidden`);
+}
+
+function closeBasket(){
+ const openBasketRef = document.getElementById(`open-basket`);
+ openBasketRef.classList.add(`hidden`);
+}
+
+
+// if payed than order confirmation
+function openDialog() {
+    const basketToggleRef = document.getElementById(`basket`);
+
+    basket = [];
+
+    const checkOutDialogRef = document.getElementById(`check-out-dialog`);
+    checkOutDialogRef.innerHTML = getCheckOutTemplate();
+
+    checkOutDialogRef.showModal();
+
+    basketToggleRef.classList.add(`hidden`);
+
+    renderBasket();
+    renderCartCount();
+}
+
+
+function closeDialog() {
+  const basketToggleRef = document.getElementById(`basket`);
+  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
   
+  checkOutDialogRef.close();
+  checkOutDialogRef.innerHTML = "";
+
+  basketToggleRef.classList.remove(`hidden`);
+
+  renderBasket();
+  renderCartCount();
 }
