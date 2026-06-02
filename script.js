@@ -153,12 +153,12 @@ function calculateBasketCount() {
 
 function openBasket(){
   const openBasketRef = document.getElementById(`open-basket`);
-  openBasketRef.classList.remove(`hidden`);
+  openBasketRef.classList.add(`open`);
 }
 
 function closeBasket(){
  const openBasketRef = document.getElementById(`open-basket`);
- openBasketRef.classList.add(`hidden`);
+ openBasketRef.classList.remove(`open`);
 }
 
 

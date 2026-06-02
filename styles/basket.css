@@ -1,3 +1,12 @@
+/* @media screen and (max-width: 900px) {
+  .basket-desktop-wrapper {
+    display: none;
+  }
+  .basket-desktop-wrapper.open {
+    display: flex;
+  }
+} */
+
 .basket-desktop-wrapper {
   z-index: 1000;
   height: 100%;
@@ -6,6 +15,7 @@
   top: 0px;
   display: flex;
   justify-content: center;
+  
 
   .content-basket-desktop {
     width: 1440px;
@@ -56,12 +66,11 @@
           button {
             display: none;
 
-               @media screen and (max-width: 900px) {
-                display: block;
-                   height: 16px;
-                   width: 16px;
-       
-      }
+            @media screen and (max-width: 900px) {
+              display: block;
+              height: 16px;
+              width: 16px;
+            }
           }
         }
 
