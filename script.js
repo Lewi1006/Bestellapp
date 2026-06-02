@@ -54,20 +54,18 @@ function renderBasket() {
   }
 }
 
-function renderCartCount(){
+function renderCartCount() {
   const cartCountRef = document.getElementById(`cart-count`);
   const itemCount = calculateBasketCount();
 
-  if(itemCount === 0){
+  if (itemCount === 0) {
     cartCountRef.innerHTML = "";
     cartCountRef.classList.remove("circle-flag");
   } else {
     cartCountRef.classList.add("circle-flag");
-    cartCountRef.innerHTML = getCartCountTemplate(itemCount); 
+    cartCountRef.innerHTML = getCartCountTemplate(itemCount);
   }
-
 }
-
 
 // add to basket
 // make sure dishes are not added as two seperate cards but use counter instead
@@ -151,43 +149,41 @@ function calculateBasketCount() {
   return itemCount;
 }
 
-function openBasket(){
+function openBasket() {
+  console.log("clicked");
   const openBasketRef = document.getElementById(`open-basket`);
   openBasketRef.classList.add(`open`);
 }
 
-function closeBasket(){
- const openBasketRef = document.getElementById(`open-basket`);
- openBasketRef.classList.remove(`open`);
+function closeBasket() {
+  const openBasketRef = document.getElementById(`open-basket`);
+  openBasketRef.classList.remove(`open`);
 }
-
 
 // if payed than order confirmation
 function openDialog() {
-    const basketToggleRef = document.getElementById(`basket`);
+  basket = [];
 
-    basket = [];
+  if (window.innerWidth < 900) {
+    document.getElementById("open-basket").classList.remove("open");
+  }
 
-    const checkOutDialogRef = document.getElementById(`check-out-dialog`);
-    checkOutDialogRef.innerHTML = getCheckOutTemplate();
+  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
+  checkOutDialogRef.innerHTML = getCheckOutTemplate();
 
-    checkOutDialogRef.showModal();
+  checkOutDialogRef.showModal();
 
-    basketToggleRef.classList.add(`hidden`);
+  // basketToggleRef.classList.add(`hidden`);
 
-    renderBasket();
-    renderCartCount();
+  renderBasket();
+  renderCartCount();
 }
 
-
 function closeDialog() {
-  const basketToggleRef = document.getElementById(`basket`);
   const checkOutDialogRef = document.getElementById(`check-out-dialog`);
-  
+
   checkOutDialogRef.close();
   checkOutDialogRef.innerHTML = "";
-
-  basketToggleRef.classList.remove(`hidden`);
 
   renderBasket();
   renderCartCount();
