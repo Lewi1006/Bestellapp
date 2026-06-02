@@ -2,6 +2,7 @@ let checkedOut = false;
 
 function init() {
   renderMenu();
+  renderBasket();
 }
 
 // #region render function
@@ -20,7 +21,7 @@ function renderMenu() {
 
 // menu cards
 function renderDishes(indexMenu) {
-  let menuCardWrapperRef = document.getElementById(
+  const menuCardWrapperRef = document.getElementById(
     `menu-card-wrapper${indexMenu}`,
   );
   menuCardWrapperRef.innerHTML = "";
@@ -34,64 +35,29 @@ function renderDishes(indexMenu) {
   }
 }
 
-// basket
-function renderBasket() {
-  let basketRef = document.getElementById(`basket`);
-  
-  let totals = calculateTotal();
 
-  // if payed than order confirmation
-  if (checkedOut === true) {
-    basketRef.classList.add("basket-order-confirmed");
-    basketRef.innerHTML = getCheckOutTemplate();
-    return;
-  }
 
-  basketRef.classList.remove("basket-order-confirmed");
+// new basket
+
+function renderBasket(){
+  const basketRef = document.getElementById('basket');
+  const totals = calculateTotal();
 
   // basket with elements that only need rendering once
   basketRef.innerHTML = getBasketTemplate(totals);
+  console.log(basketRef)
 
-  // cart-count shopping cart icon
-  let cartCountRef = document.getElementById(`cart-count`);
-  let itemCount = calculateBasketCount();
-
-  if(itemCount === 0){
-    cartCountRef.innerHTML = "";
-    cartCountRef.classList.remove("circle-flag");
-  } else {
-    cartCountRef.classList.add("circle-flag");
-    cartCountRef.innerHTML = getCartCountTemplate(itemCount); 
-  }
-
-  // render dish cards into basket
-  let basketWrapperRef = document.getElementById(`basket-wrapper`);
+// render dish cards into basket
+  const basketWrapperRef = document.getElementById(`basket-wrapper`);
   basketWrapperRef.innerHTML = "";
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
     basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
   }
 }
-// #endregion
 
-// #region dialog
-function openDialog() {
-  let basketRef = document.getElementById(`basket`);
-  basketRef.showModal();
-  renderBasket();
-}
 
-// turn checkedOut to false so that once the dialog is closed the basket opens and not order confirmation
-function closeDialog() {
-  let basketRef = document.getElementById(`basket`);
-  basketRef.close();
 
-  checkedOut = false;
-  renderBasket();
-}
-// #endregion
-
-// #region fill basket
 
 // add to basket
 // make sure dishes are not added as two seperate cards but use counter instead
@@ -123,6 +89,15 @@ function addToBasket(indexMenu, indexDishes) {
 
   renderBasket();
 }
+
+
+
+
+
+
+
+
+
 
 function decreaseCount(indexBasket) {
   basket[indexBasket].count--;
@@ -157,7 +132,7 @@ function calculateTotal() {
     subtotal += basket[itemInBasket].price * basket[itemInBasket].count;
   }
 
-  let deliveryFee = basket.length === 0 ? 0.0 : 4.99;
+  const deliveryFee = basket.length === 0 ? 0.0 : 4.99;
   let total = subtotal + deliveryFee;
 
   return {
@@ -178,4 +153,3 @@ function calculateBasketCount(){
   return itemCount;
   
 }
-// #endregion
