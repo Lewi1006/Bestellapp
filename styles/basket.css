@@ -1,11 +1,17 @@
-/* @media screen and (max-width: 900px) {
-  .basket-desktop-wrapper {
-    display: none;
-  }
+
+@media screen and (max-width: 900px) {
   .basket-desktop-wrapper.open {
     display: flex;
   }
-} */
+}
+
+/* id overwrites diplay: none so basket can be visible for Desktop */
+@media screen and (min-width: 900px) {
+  #open-basket{
+    display: flex;
+  }
+}
+
 
 .basket-desktop-wrapper {
   z-index: 1000;
@@ -13,7 +19,7 @@
   width: 100%;
   position: absolute;
   top: 0px;
-  display: flex;
+  display: none;
   justify-content: center;
   
 
