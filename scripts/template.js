@@ -67,7 +67,7 @@ function getBasketTemplate(totals) {
   return /*html*/ `
     <div class="dialog-wrapper">
       <header class="dialog-header">
-        <button onclick="closeBasket()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeBasket()" aria-label="close"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
       </header>
         
       <h1>Your Basket</h1>
@@ -93,7 +93,7 @@ function getBasketTemplate(totals) {
           </tr>
         </table>
 
-        <button class="buy-now-button" onclick="openDialog()">
+        <button class="buy-now-button" onclick="openDialog()" aria-label="checkout">
           <p>Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
         </button>
   
@@ -110,14 +110,14 @@ function getBasketCardTemplate(indexBasket) {
     <article class="basket-card">
       <div class="basket-card-top">
           <p class="basket-dish">${basket[indexBasket].name}</p>
-          <button class="trash-button" onclick="deleteFromBasket(${indexBasket})"><img src="./assets/icons/trash-icon.svg" alt="trash"/></button>
+          <button class="trash-button" onclick="deleteFromBasket(${indexBasket})" aria-label="delete"><img src="./assets/icons/trash-icon.svg" alt="trash"/></button>
       </div>
 
       <div class="basket-card-bottom">
         <div class="basket-count">
-          <button onclick="decreaseCount(${indexBasket})">-</button>
+          <button onclick="decreaseCount(${indexBasket})" aria-label="decrease quantity">-</button>
           <p class="count">${basket[indexBasket].count}</p>
-          <button onclick="increaseCount(${indexBasket})">+</button>
+          <button onclick="increaseCount(${indexBasket})" aria-label="increase quantity">+</button>
         </div>
           <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".", ",")}€</p>
       </div>
@@ -134,7 +134,7 @@ function getCheckOutTemplate() {
 
     <div class="dialog-wrapper-ordered">
       <header class="dialog-header">
-        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button" aria-label="close"></button>
       </header>
 
     <img src="./assets/icons/delivery-truck-icon.svg" alt="delivery truck icon"/>
@@ -151,7 +151,7 @@ function getEmptyCheckOutTemplate() {
   return /*html*/ `
   <div class="dialog-wrapper-ordered">
       <header class="dialog-header">
-        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button" aria-label="close"></button>
       </header>
     
     <div class="dialog-empty-basket">
