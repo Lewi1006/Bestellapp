@@ -1,3 +1,5 @@
+// #region menu templates
+
 function getMenuTemplate(indexMenu) {
   return /*html*/ `
          <div class="menu-headline">
@@ -20,6 +22,10 @@ function getMenuTemplate(indexMenu) {
         `;
 }
 
+// Gets a single dish object from the menu db
+// menu[indexMenu].dishes[indexDishes] indicates the specific dish
+// Stored in a variable "dish" to make reading easier
+// dish object properties can now be accessed so that price, img, etc can be dynamic
 function getDishesTemplate(indexMenu, indexDishes) {
   let dish = menu[indexMenu].dishes[indexDishes];
 
@@ -49,6 +55,14 @@ function getDishesTemplate(indexMenu, indexDishes) {
         `;
 }
 
+// #endregion
+
+// #region basket templates
+
+// template for basket elements that are always visible
+// access values of totals
+// toFixed --> two decimals visible
+// replace --> changes . to ,
 function getBasketTemplate(totals) {
   return /*html*/ `
     <div class="dialog-wrapper">
@@ -65,7 +79,7 @@ function getBasketTemplate(totals) {
           <table class="basket-table-total">
           <tr>
             <td>Subtotal</td>
-            <td>${totals.subtotal.toFixed(2).replace(".",",")} €</td>
+            <td>${totals.subtotal.toFixed(2).replace(".", ",")} €</td>
           </tr>
 
           <tr class="delivery-row">
@@ -88,6 +102,9 @@ function getBasketTemplate(totals) {
   `;
 }
 
+
+// the Template for each dish card in the basket 
+// that gets rendered into basket-wrapper in getBasketTemplate
 function getBasketCardTemplate(indexBasket) {
   return /*html*/ `
     <article class="basket-card">
@@ -108,6 +125,9 @@ function getBasketCardTemplate(indexBasket) {
 `;
 }
 
+// #endregion
+
+// #region checkout dialog templates
 
 function getCheckOutTemplate() {
   return /*html*/ `
@@ -127,7 +147,7 @@ function getCheckOutTemplate() {
   `;
 }
 
-function getEmptyCheckOutTemplate(){
+function getEmptyCheckOutTemplate() {
   return /*html*/ `
   <div class="dialog-wrapper-ordered">
       <header class="dialog-header">
@@ -142,8 +162,10 @@ function getEmptyCheckOutTemplate(){
   `;
 }
 
-function getCartCountTemplate(itemCount){
-  return /*html*/`
+// #endregion
+
+function getCartCountTemplate(itemCount) {
+  return /*html*/ `
     <p class="item-count">${itemCount}</p>
-  `
+  `;
 }
