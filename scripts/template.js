@@ -1,6 +1,9 @@
+// #region menu templates
+
 function getMenuTemplate(indexMenu) {
   return /*html*/ `
          <div class="menu-headline">
+          <div class="menu-headline-content">
             <div class="menu-headline-icon">
             <img
               src=${menu[indexMenu].category.src}
@@ -8,6 +11,7 @@ function getMenuTemplate(indexMenu) {
             />
           </div>
           <h2>${menu[indexMenu].category.name}</h2>
+          </div>
         </div>
         
          <div class="content">
@@ -18,6 +22,10 @@ function getMenuTemplate(indexMenu) {
         `;
 }
 
+// Gets a single dish object from the menu db
+// menu[indexMenu].dishes[indexDishes] indicates the specific dish
+// Stored in a variable "dish" to make reading easier
+// dish object properties can now be accessed so that price, img, etc can be dynamic
 function getDishesTemplate(indexMenu, indexDishes) {
   let dish = menu[indexMenu].dishes[indexDishes];
 
@@ -47,16 +55,25 @@ function getDishesTemplate(indexMenu, indexDishes) {
         `;
 }
 
+// #endregion
+
+// #region basket templates
+
+// template for basket elements that are always visible
+// access values of totals
+// toFixed --> two decimals visible
+// replace --> changes . to ,
 function getBasketTemplate(totals) {
   return /*html*/ `
     <div class="dialog-wrapper">
       <header class="dialog-header">
-        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+        <button onclick="closeBasket()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
       </header>
         
       <h1>Your Basket</h1>
 
       <div id="basket-wrapper">
+        
      </div>
 
           <table class="basket-table-total">
@@ -76,7 +93,7 @@ function getBasketTemplate(totals) {
           </tr>
         </table>
 
-        <button class="buy-now-button" onclick="checkOut()">
+        <button class="buy-now-button" onclick="openDialog()">
           <p>Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
         </button>
   
@@ -85,6 +102,9 @@ function getBasketTemplate(totals) {
   `;
 }
 
+
+// the Template for each dish card in the basket 
+// that gets rendered into basket-wrapper in getBasketTemplate
 function getBasketCardTemplate(indexBasket) {
   return /*html*/ `
     <article class="basket-card">
@@ -101,14 +121,13 @@ function getBasketCardTemplate(indexBasket) {
         </div>
           <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".", ",")}€</p>
       </div>
-
-
-        </article>
-   
-
-  
+    </article>
 `;
 }
+
+// #endregion
+
+// #region checkout dialog templates
 
 function getCheckOutTemplate() {
   return /*html*/ `
@@ -128,8 +147,25 @@ function getCheckOutTemplate() {
   `;
 }
 
-function getCartCountTemplate(itemCount){
-  return /*html*/`
+function getEmptyCheckOutTemplate() {
+  return /*html*/ `
+  <div class="dialog-wrapper-ordered">
+      <header class="dialog-header">
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+      </header>
+    
+    <div class="dialog-empty-basket">
+      <h1>Your basket is empty!</h1>
+      <p>Please add items!</p> 
+    </div>
+  </div>
+  `;
+}
+
+// #endregion
+
+function getCartCountTemplate(itemCount) {
+  return /*html*/ `
     <p class="item-count">${itemCount}</p>
-  `
+  `;
 }

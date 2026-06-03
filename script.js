@@ -1,12 +1,15 @@
-let checkedOut = false;
-
 function init() {
   renderMenu();
+  renderBasket();
 }
 
 // #region render function
 
-// entire menu
+// renders the entire menu section
+// Loops through all menu categories:
+// 1. inserts the category template (getMenuTemplate)
+// 2. calls renderDishes(indexMenu) to fill category with its dishes
+// indexMenu indicates which category is rendered
 function renderMenu() {
   const menuRef = document.getElementById("menu");
   menuRef.innerHTML = "";
@@ -18,9 +21,12 @@ function renderMenu() {
   }
 }
 
-// menu cards
+// renders the dishes (getDishesTeemplate) into each category in (getMenuTemplate)
+// gets the right menu-card wrapper by indexMenu in getMenuTemplate
+// loops through all dishes in that category using indexDishes
+// we pass value so each dish can be inserted using getDishesTemplate(indexMenu, indexDishes)
 function renderDishes(indexMenu) {
-  let menuCardWrapperRef = document.getElementById(
+  const menuCardWrapperRef = document.getElementById(
     `menu-card-wrapper${indexMenu}`,
   );
   menuCardWrapperRef.innerHTML = "";
@@ -34,69 +40,60 @@ function renderDishes(indexMenu) {
   }
 }
 
-// basket
-function renderBasket() {
-  let basketRef = document.getElementById(`basket`);
-  
-  let totals = calculateTotal();
-  
-  // if payed than order confirmation
-  if (checkedOut === true) {
-    basketRef.classList.add("basket-order-confirmed");
-    basketRef.innerHTML = getCheckOutTemplate();
-    return;
-  }
+// render layout(render once) and dishes(update UI everytime) into basket
+// call calculateTotal() function for total, subtotal and delivery fee and store in variable totals
+// pass totals into getBasketTemplate
 
-  basketRef.classList.remove("basket-order-confirmed");
+function renderBasket() {
+  const basketRef = document.getElementById(`basket`);
+  const totals = calculateTotal();
 
   // basket with elements that only need rendering once
   basketRef.innerHTML = getBasketTemplate(totals);
 
-  // cart-count shopping cart icon
-  let cartCountRef = document.getElementById(`cart-count`);
-  let itemCount = calculateBasketCount();
-
-  if(itemCount === 0){
-    cartCountRef.innerHTML = "";
-    cartCountRef.classList.remove("circle-flag");
-  } else {
-    cartCountRef.classList.add("circle-flag");
-    cartCountRef.innerHTML = getCartCountTemplate(itemCount); 
-  }
-
-  // render dish cards into basket
-  let basketWrapperRef = document.getElementById(`basket-wrapper`);
+  // render dish cards into getBasketTemplate
+  // loop through items in basket with indexBasket
+  const basketWrapperRef = document.getElementById(`basket-wrapper`);
   basketWrapperRef.innerHTML = "";
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
     basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
   }
 }
-// #endregion
 
-// #region dialog
-function openDialog() {
-  let basketRef = document.getElementById(`basket`);
-  basketRef.showModal();
-  renderBasket();
+// renders the counter on shopping cart icon in mobile version
+// call calculateBasketCount() function, in which the dishes in basket get counted
+// --> and their value returned to renderCartCount()
+// the value (number of items) gets stored in itemCount
+// if-statement to remove styling class if there is no items in the cart (cartCount === 0)
+function renderCartCount() {
+  const cartCountRef = document.getElementById(`cart-count`);
+  const itemCount = calculateBasketCount();
+
+  if (itemCount === 0) {
+    cartCountRef.innerHTML = "";
+    cartCountRef.classList.remove("circle-flag");
+  } else {
+    cartCountRef.classList.add("circle-flag");
+    cartCountRef.innerHTML = getCartCountTemplate(itemCount);
+  }
 }
 
-// turn checkedOut to false so that once the dialog is closed the basket opens and not order confirmation
-function closeDialog() {
-  let basketRef = document.getElementById(`basket`);
-  basketRef.close();
-
-  checkedOut = false;
-  renderBasket();
-}
 // #endregion
 
-// #region fill basket
+// #region helper functions inside basket
 
 // add to basket
-// make sure dishes are not added as two seperate cards but use counter instead
-// store access to full menu array in variable const dish
-// 
+// function is called in the DishesTemplate at add to basket button
+// --> there the values of indexMenu and indexDishes get passed
+// dish variable to make reading of specific dish easier --> stores access to full menu array
+// make sure dishes are not added as two seperate cards but card uses counter instead
+// check with state of true and false if dish doubles
+// --> false by default but turns true if names of menu card and baskezt card match
+// if true then assign the menu card dish to the variable repeating dish and exit function
+// if the item is found = true the count of repeatingDish/basket[basketItem].count
+// --> in basketCartTemplate increases
+// else if item is not found we add it to the array by pushing it as an object
 function addToBasket(indexMenu, indexDishes) {
   const dish = menu[indexMenu].dishes[indexDishes];
 
@@ -122,8 +119,13 @@ function addToBasket(indexMenu, indexDishes) {
   }
 
   renderBasket();
+  renderCartCount();
 }
 
+// Decreases the quantity of basket item by 1
+// Called from getBasketCardTemplate via onclick
+// If the count reaches 0 or less, the item is removed from the basket array
+// After updating state, UI is re-rendered
 function decreaseCount(indexBasket) {
   basket[indexBasket].count--;
 
@@ -132,24 +134,30 @@ function decreaseCount(indexBasket) {
   }
 
   renderBasket();
+  renderCartCount();
 }
 
+// Increases the quantity of basket item by 1
 function increaseCount(indexBasket) {
   basket[indexBasket].count++;
   renderBasket();
+  renderCartCount();
 }
 
+// deletes item from basket array
+// called from getBasketCardTemplate via onclick
 function deleteFromBasket(indexBasket) {
   basket.splice(indexBasket, 1);
   renderBasket();
+  renderCartCount();
 }
 
-function checkOut() {
-  checkedOut = true;
-  basket = [];
-  renderBasket();
-}
-
+// calculates the prices of dishes
+// loops through basket to calculate subtotal by multiplying
+// --> the item price times the item count and stores it in subtotal
+// delivery fee is 0 if basket ampty else 4.99
+// return all values as object
+// --> function gets called in renderBasket and values get stored in total
 function calculateTotal() {
   let subtotal = 0;
 
@@ -157,7 +165,7 @@ function calculateTotal() {
     subtotal += basket[itemInBasket].price * basket[itemInBasket].count;
   }
 
-  let deliveryFee = basket.length === 0 ? 0.0 : 4.99;
+  const deliveryFee = basket.length === 0 ? 0.0 : 4.99;
   let total = subtotal + deliveryFee;
 
   return {
@@ -167,15 +175,71 @@ function calculateTotal() {
   };
 }
 
+// #endregion
 
-function calculateBasketCount(){
+// gets called in renderCartCount to update the shopping cart flag number
+// adds the amounts of items in basket together and returns the value
+function calculateBasketCount() {
   let itemCount = 0;
 
-  for(let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++){
+  for (let itemInBasket = 0; itemInBasket < basket.length; itemInBasket++) {
     itemCount += basket[itemInBasket].count;
   }
 
   return itemCount;
-  
 }
+
+// #region opening and closing windows
+
+// function gets called in nav-bar on click of shopping cart button
+// targets ID of aside element and adds class open to it when button clicked
+// open displays aside element in mobile version
+function openBasket() {
+  const openBasketRef = document.getElementById(`open-basket`);
+  openBasketRef.classList.add(`open`);
+}
+
+// gets called when close button of basket is clicked and removes the class
+function closeBasket() {
+  const openBasketRef = document.getElementById(`open-basket`);
+  openBasketRef.classList.remove(`open`);
+}
+
+// if pay now button clicked and items in basket than order confirmation dialog opens
+// --> and basket empties and closes in mobile version
+// if basket empty then emptyCheckOutTemplate
+// else getCheckOutTemplate and empty basket
+// if the screen size is under 900px and the dialog opens
+// --> remove the class open of basket so it is no longer visible
+// --> and only gets visible again once shopping cart icon in navbar is clicked
+function openDialog() {
+  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
+  if (basket.length === 0) {
+    checkOutDialogRef.innerHTML = getEmptyCheckOutTemplate();
+  } else {
+    checkOutDialogRef.innerHTML = getCheckOutTemplate();
+
+    basket = [];
+  }
+
+  if (window.innerWidth < 900) {
+    document.getElementById("open-basket").classList.remove("open");
+  }
+
+  renderBasket();
+  renderCartCount();
+
+  checkOutDialogRef.showModal();
+}
+
+function closeDialog() {
+  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
+
+  checkOutDialogRef.close();
+  checkOutDialogRef.innerHTML = "";
+
+  renderBasket();
+  renderCartCount();
+}
+
 // #endregion

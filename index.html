@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bestell App</title>
+    <link rel="icon" type="image/x-icon" href="./assets/icons/app-icon.svg">
+
     <link rel="icon" type="image/x-icon" href="./assets/icons/app-icon.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
@@ -74,21 +76,33 @@
         </div>
       </section>
 
-      <section id="menu"></section>
+      <section>
+        <div id="menu"></div>
+  
+        <aside class="basket-desktop-wrapper" id="open-basket">
+          <div class="content-basket-desktop">
+            <div id="basket">
+              <!-- JS -->
+               
+            </div>
+          </div>
+        </aside>
+        
+      </section>
+
     </main>
 
-    <aside class="basket-desktop-wrapper">
-      <div class="content-basket-desktop">
-        <div id="basket-desktop"></div>
-      </div>
-    </aside>
 
-    <dialog aria-labelledby="" id="basket"></dialog>
+    <dialog id="check-out-dialog">
+      <!-- JS -->
+    </dialog>
+
+    <!-- <dialog aria-labelledby="" id="basket"></dialog> -->
 
     <footer>
       <div class="content">
         <div class="footer-wrapper">
-          <p>Imprint</p>
+          <a href="impressum.html" target="_blank"><p>Imprint</p></a>
           <p>Cookie Preferences</p>
           <div>
             <img src="./assets/icons/copyright.svg" alt="copyright icon" />
@@ -122,13 +136,13 @@
           </li>
 
           <li class="shopping-cart">
-            <button class="nav-link basket-link" href="" onclick="openDialog()">
+            <button class="nav-link basket-link" href="" onclick="openBasket()">
               <img
                 src="./assets/icons/shopping-cart-white.svg"
                 alt="shopping cart icon"
               />
             </button>
-            <div class="hidden" id="cart-count"></div>
+            <div id="cart-count"></div>
           </li>
         </ul>
       </div>
