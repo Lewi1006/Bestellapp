@@ -1,6 +1,7 @@
 function getMenuTemplate(indexMenu) {
   return /*html*/ `
          <div class="menu-headline">
+          <div class="menu-headline-content">
             <div class="menu-headline-icon">
             <img
               src=${menu[indexMenu].category.src}
@@ -8,6 +9,7 @@ function getMenuTemplate(indexMenu) {
             />
           </div>
           <h2>${menu[indexMenu].category.name}</h2>
+          </div>
         </div>
         
          <div class="content">
