@@ -230,6 +230,8 @@ function openDialog() {
     document.getElementById("open-basket").classList.remove("open");
   }
 
+  document.body.classList.add("no-scroll");
+
   renderBasket();
   renderCartCount();
 
@@ -241,6 +243,8 @@ function closeDialog() {
 
   checkOutDialogRef.close();
   checkOutDialogRef.innerHTML = "";
+
+  document.body.classList.remove("no-scroll");
 
   renderBasket();
   renderCartCount();

@@ -264,6 +264,7 @@ main {
 
     @media screen and (min-width: 900px) {
       width: calc(100% - 400px);
+      z-index: 2000;
     }
 
     .menu-card {
@@ -350,6 +351,7 @@ main {
           border-radius: 20px;
           padding: 5px 8px;
           background-color: rgba(255, 255, 255, 1);
+          cursor: pointer;
 
           p {
             font-weight: 600;
@@ -394,11 +396,13 @@ main {
         img {
           width: 30px;
           height: 30px;
+          cursor: pointer;
         }
       }
     }
 
     .shopping-cart {
+      
       .circle-flag {
         background-color: rgba(253, 234, 220, 1);
         width: 15px;
@@ -410,6 +414,7 @@ main {
         display: flex;
         justify-content: center;
         align-items: center;
+        
 
         .item-count {
           color: rgba(231, 108, 31, 1);
