@@ -13,13 +13,19 @@
 }
 
 .basket-desktop-wrapper {
-  _z-index: 1000;
+  z-index: 1001;
   height: 100%;
   width: 100%;
   position: absolute;
   top: 0px;
   display: none;
   justify-content: center;
+
+  @media screen and (max-width: 900px) {
+      position: fixed;
+      top: 70px;
+      height: 80dvh;
+    }
   
 
   .content-basket-desktop {
@@ -49,7 +55,7 @@
         position: absolute;
         top: 0;
         width: 100%;
-        height: 600px;
+        height: 520px;
         border-radius: 30px;
       }
 

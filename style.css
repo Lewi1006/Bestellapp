@@ -482,3 +482,9 @@ footer {
   }
 
 }
+
+
+.no-scroll{
+  height: 100dvh;
+  overflow-y: hidden;
+}

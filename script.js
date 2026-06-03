@@ -197,12 +197,16 @@ function calculateBasketCount() {
 function openBasket() {
   const openBasketRef = document.getElementById(`open-basket`);
   openBasketRef.classList.add(`open`);
+
+  document.body.classList.add("no-scroll");
 }
 
 // gets called when close button of basket is clicked and removes the class
 function closeBasket() {
   const openBasketRef = document.getElementById(`open-basket`);
   openBasketRef.classList.remove(`open`);
+
+  document.body.classList.remove("no-scroll");
 }
 
 // if pay now button clicked and items in basket than order confirmation dialog opens
