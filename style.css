@@ -471,3 +471,15 @@ footer {
 }
 
 /* #endregion */
+
+
+.impressum-info{
+  width: 100%;
+  height: 8dvw;
+
+  p{
+      font-weight: 400;
+      font-size: 32px;
+  }
+
+}
