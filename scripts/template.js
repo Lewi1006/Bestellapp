@@ -127,6 +127,21 @@ function getCheckOutTemplate() {
   `;
 }
 
+function getEmptyCheckOutTemplate(){
+  return /*html*/ `
+  <div class="dialog-wrapper-ordered">
+      <header class="dialog-header">
+        <button onclick="closeDialog()"><img src="./assets/icons/close-icon.svg" alt="close button"></button>
+      </header>
+    
+    <div class="dialog-empty-basket">
+      <h1>Your basket is empty!</h1>
+      <p>Please add items!</p> 
+    </div>
+  </div>
+  `;
+}
+
 function getCartCountTemplate(itemCount){
   return /*html*/`
     <p class="item-count">${itemCount}</p>

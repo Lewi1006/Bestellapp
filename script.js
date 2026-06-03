@@ -162,21 +162,26 @@ function closeBasket() {
 
 // if payed than order confirmation
 function openDialog() {
-  basket = [];
 
+  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
+  if(basket.length === 0){
+    checkOutDialogRef.innerHTML = getEmptyCheckOutTemplate();
+  } else {
+    checkOutDialogRef.innerHTML = getCheckOutTemplate();
+    
+    basket = [];
+  }
+  
   if (window.innerWidth < 900) {
     document.getElementById("open-basket").classList.remove("open");
   }
 
-  const checkOutDialogRef = document.getElementById(`check-out-dialog`);
-  checkOutDialogRef.innerHTML = getCheckOutTemplate();
+  renderBasket();
+  renderCartCount();
 
   checkOutDialogRef.showModal();
 
-  // basketToggleRef.classList.add(`hidden`);
 
-  renderBasket();
-  renderCartCount();
 }
 
 function closeDialog() {
