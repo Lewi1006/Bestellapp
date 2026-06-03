@@ -426,6 +426,7 @@ main {
 
 /* #endregion */
 
+/* #region footer */
 footer {
   width: 100%;
   height: 125px;
@@ -471,7 +472,6 @@ footer {
 }
 
 /* #endregion */
-
 
 .impressum-info{
   width: 100%;
