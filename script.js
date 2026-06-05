@@ -323,6 +323,10 @@ function closeDialog() {
 // #endregion
 
 // #region LOCAL STORAGE
+// check if basket is empty and only when its not empty 
+// --> shall the new array be assigned to the old array 
+// save everything to local storage 
+// call getFromLocalStorage in init function before everything else
 function saveToLocalStorage() {
   localStorage.setItem("basket", JSON.stringify(basket));
 }
