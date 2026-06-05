@@ -79,22 +79,22 @@ function getBasketTemplate(totals) {
           <table class="basket-table-total">
           <tr>
             <td>Subtotal</td>
-            <td>${totals.subtotal.toFixed(2).replace(".", ",")} €</td>
+            <td id="subtotal-price">${totals.subtotal.toFixed(2).replace(".", ",")}€</td>
           </tr>
 
           <tr class="delivery-row">
             <td>Delivery Fee</td>
-            <td>${totals.deliveryFee.toFixed(2).replace(".", ",")} €</td>
+            <td id="delivery-fee-price">${totals.deliveryFee.toFixed(2).replace(".", ",")}€</td>
           </tr>
 
           <tr id="total-row">
             <td>Total</td>
-            <td>${totals.total.toFixed(2).replace(".", ",")} €</td>
+            <td id="total-price">${totals.total.toFixed(2).replace(".", ",")}€</td>
           </tr>
         </table>
 
         <button class="buy-now-button" onclick="openDialog()" aria-label="checkout">
-          <p>Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
+          <p id="buy-total">Buy now (${totals.total.toFixed(2).replace(".", ",")}€)</p>
         </button>
   
         
@@ -102,8 +102,7 @@ function getBasketTemplate(totals) {
   `;
 }
 
-
-// the Template for each dish card in the basket 
+// the Template for each dish card in the basket
 // that gets rendered into basket-wrapper in getBasketTemplate
 function getBasketCardTemplate(indexBasket) {
   return /*html*/ `
@@ -116,10 +115,10 @@ function getBasketCardTemplate(indexBasket) {
       <div class="basket-card-bottom">
         <div class="basket-count">
           <button onclick="decreaseCount(${indexBasket})" aria-label="decrease quantity">-</button>
-          <p class="count">${basket[indexBasket].count}</p>
+          <p id="count${indexBasket}" class="count"></p>
           <button onclick="increaseCount(${indexBasket})" aria-label="increase quantity">+</button>
         </div>
-          <p class="basket-price">${basket[indexBasket].price.toFixed(2).replace(".", ",")}€</p>
+          <p id="price${indexBasket}" class="basket-price">€</p>
       </div>
     </article>
 `;

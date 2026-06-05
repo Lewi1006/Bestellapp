@@ -47,7 +47,6 @@ function renderDishes(indexMenu) {
 function renderBasket() {
   const basketRef = document.getElementById(`basket`);
   const totals = calculateTotal();
-
   // basket with elements that only need rendering once
   basketRef.innerHTML = getBasketTemplate(totals);
 
@@ -58,8 +57,25 @@ function renderBasket() {
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
     basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
+    renderCount(indexBasket);
+    renderPrice(indexBasket);
   }
 }
+
+// dynamic content (count, price) in cards needs to be rendered individually
+function renderCount(indexBasket) {
+  const countRef = document.getElementById(`count${indexBasket}`);
+  countRef.innerHTML = basket[indexBasket].count;
+}
+
+// renders price for a single menu card
+function renderPrice(indexBasket) {
+  const priceRef = document.getElementById(`price${indexBasket}`);
+  const total = basket[indexBasket].price * basket[indexBasket].count;
+
+  priceRef.innerHTML = total.toFixed(2).replace(".", ",");
+}
+
 
 // renders the counter on shopping cart icon in mobile version
 // call calculateBasketCount() function, in which the dishes in basket get counted
@@ -99,26 +115,30 @@ function addToBasket(indexMenu, indexDishes) {
 
   let foundItem = false;
   let repeatingDish = "";
+  let indexBasket = null;
 
   for (let basketItem = 0; basketItem < basket.length; basketItem++) {
     if (basket[basketItem].name === dish.name) {
       foundItem = true;
       repeatingDish = basket[basketItem];
+      indexBasket = basketItem;
       break;
     }
   }
 
   if (foundItem === true) {
     repeatingDish.count++;
+    renderCount(indexBasket);
+    renderPrice(indexBasket);
   } else {
     basket.push({
       name: dish.name,
       price: dish.price,
       count: 1,
     });
-  }
 
-  renderBasket();
+    renderBasket();
+  }
   renderCartCount();
 }
 
@@ -131,16 +151,22 @@ function decreaseCount(indexBasket) {
 
   if (basket[indexBasket].count <= 0) {
     basket.splice(indexBasket, 1);
+    renderBasket();
+    renderCartCount();
+    return;
   }
 
-  renderBasket();
+  renderCount(indexBasket);
+  renderPrice(indexBasket);
   renderCartCount();
 }
 
 // Increases the quantity of basket item by 1
 function increaseCount(indexBasket) {
   basket[indexBasket].count++;
-  renderBasket();
+
+  renderCount(indexBasket);
+  renderPrice(indexBasket);
   renderCartCount();
 }
 
