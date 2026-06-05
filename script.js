@@ -46,20 +46,23 @@ function renderDishes(indexMenu) {
 
 function renderBasket() {
   const basketRef = document.getElementById(`basket`);
-  const totals = calculateTotal();
+  // const totals = calculateTotal();
   // basket with elements that only need rendering once
-  basketRef.innerHTML = getBasketTemplate(totals);
+  basketRef.innerHTML = getBasketTemplate();
 
   // render dish cards into getBasketTemplate
   // loop through items in basket with indexBasket
   const basketWrapperRef = document.getElementById(`basket-wrapper`);
   basketWrapperRef.innerHTML = "";
+  
 
   for (let indexBasket = 0; indexBasket < basket.length; indexBasket++) {
     basketWrapperRef.innerHTML += getBasketCardTemplate(indexBasket);
     renderCount(indexBasket);
     renderPrice(indexBasket);
   }
+
+  renderTotals();
 }
 
 // dynamic content (count, price) in cards needs to be rendered individually
@@ -76,6 +79,21 @@ function renderPrice(indexBasket) {
   priceRef.innerHTML = total.toFixed(2).replace(".", ",");
 }
 
+function renderTotals(){
+   const totals = calculateTotal();
+
+  const subtotalPriceRef = document.getElementById(`subtotal-price`);
+  subtotalPriceRef.innerHTML = `${totals.subtotal.toFixed(2).replace(".", ",")}€`;
+  
+  const deliveryFeePriceRef = document.getElementById(`delivery-fee-price`);
+  deliveryFeePriceRef.innerHTML = `${totals.deliveryFee.toFixed(2).replace(".", ",")}€`;
+  
+  const totalPriceRef = document.getElementById(`total-price`);
+  totalPriceRef.innerHTML = `${totals.total.toFixed(2).replace(".", ",")}€`; 
+
+  const buyTotalref = document.getElementById(`buy-total`);
+  buyTotalref.innerHTML= `Buy now (${totals.total.toFixed(2).replace(".", ",")}€)`;
+}
 
 // renders the counter on shopping cart icon in mobile version
 // call calculateBasketCount() function, in which the dishes in basket get counted
@@ -130,6 +148,7 @@ function addToBasket(indexMenu, indexDishes) {
     repeatingDish.count++;
     renderCount(indexBasket);
     renderPrice(indexBasket);
+    renderTotals();
   } else {
     basket.push({
       name: dish.name,
@@ -139,6 +158,7 @@ function addToBasket(indexMenu, indexDishes) {
 
     renderBasket();
   }
+  
   renderCartCount();
 }
 
@@ -158,6 +178,7 @@ function decreaseCount(indexBasket) {
 
   renderCount(indexBasket);
   renderPrice(indexBasket);
+  renderTotals();
   renderCartCount();
 }
 
@@ -167,6 +188,7 @@ function increaseCount(indexBasket) {
 
   renderCount(indexBasket);
   renderPrice(indexBasket);
+  renderTotals();
   renderCartCount();
 }
 
