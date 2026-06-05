@@ -14,6 +14,7 @@ let menu = [
         price: 16.9,
         src: "./assets/img/veggie-burger.jpg",
         alt: "veggie burger",
+        count: 0,
       },
       {
         name: "All meat burger",
@@ -22,6 +23,7 @@ let menu = [
         price: 15.9,
         src: "./assets/img/all-meat-burger.jpg",
         alt: "all meat burger",
+        count: 0,
       },
       {
         name: "Beef red burger",
@@ -29,6 +31,7 @@ let menu = [
         price: 14.9,
         src: "./assets/img/beef-red-burger.jpg",
         alt: "beef red burger",
+        count: 0,
       },
 
       {
@@ -37,6 +40,7 @@ let menu = [
         price: 15.9,
         src: "./assets/img/big-chicken-burger.jpg",
         alt: "big chicken burger",
+        count: 0,
       },
     ],
   },
@@ -46,6 +50,7 @@ let menu = [
       name: "Pizza",
       src: "./assets/icons/seperator-pizza-icon.svg",
       alt: "pizza-icon",
+      count: 0,
     },
 
     dishes: [
@@ -55,6 +60,7 @@ let menu = [
         price: 11.9,
         src: "./assets/img/pizza-margherita.jpg",
         alt: "pizza margherita",
+        count: 0,
       },
       {
         name: "Pizza Chorizo",
@@ -62,6 +68,7 @@ let menu = [
         price: 13.9,
         src: "./assets/img/pizza-chorizo.jpg",
         alt: "pizza chorizo",
+        count: 0,
       },
       {
         name: "Pizza Funghi",
@@ -69,6 +76,7 @@ let menu = [
         price: 13.9,
         src: "./assets/img/pizza-funghi.jpg",
         alt: "pizza funghi",
+        count: 0,
       },
       {
         name: "Quattro Formaggi with Chicken",
@@ -77,6 +85,7 @@ let menu = [
         price: 16.9,
         src: "./assets/img/pizza-quattro.jpg",
         alt: "Quattro Formaggi with Chicken",
+        count: 0,
       },
     ],
   },
@@ -85,6 +94,7 @@ let menu = [
       name: "Salad",
       src: "./assets/icons/seperator-salad-icon.svg",
       alt: "salad-icon",
+      count: 0,
     },
 
     dishes: [
@@ -95,6 +105,7 @@ let menu = [
         price: 16.9,
         src: "./assets/img/beef-salad.jpg",
         alt: "Warm beef arugula salad",
+        count: 0,
       },
       {
         name: "Mini green salad",
@@ -102,6 +113,7 @@ let menu = [
         price: 7.9,
         src: "./assets/img/mini-salad.jpg",
         alt: "Mini green salad",
+        count: 0,
       },
       {
         name: "Green salad with sea food",
@@ -110,6 +122,7 @@ let menu = [
         price: 16.9,
         src: "./assets/img/green-salad.jpg",
         alt: "Green salad with sea food",
+        count: 0,
       },
       {
         name: "Vegan green salad with tofu",
@@ -118,6 +131,7 @@ let menu = [
         price: 14.9,
         src: "./assets/img/vegan-salad.jpg",
         alt: "Vegan green salad with tofu",
+        count: 0,
       },
     ],
   },
